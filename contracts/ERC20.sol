@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >0.6.0 <0.8.0;
+pragma solidity >0.6.0 <=0.8.4;
 
 /**
  * @title ERC20
@@ -48,7 +48,6 @@ contract ERC20 {
         uint256 _initialSupply,
         string memory _name
     )
-        public
     {
         balances[msg.sender] = _initialSupply;
         totalSupply = _initialSupply;

@@ -3,6 +3,7 @@ const { ethers, network } = require('hardhat')
 const chai = require('chai')
 const { solidity } = require('ethereum-waffle')
 const chaiAsPromised = require('chai-as-promised')
+const { ContractFactory } = require('@ethersproject/contracts')
 const { expect } = chai
 
 chai.use(chaiAsPromised)
@@ -20,8 +21,15 @@ describe(`ERC20`, () => {
 
   let ERC20
   beforeEach(`deploy ERC20 contract`, async () => {
-    const Factory__ERC20 = await ethers.getContractFactory('ERC20')
-    ERC20 = await Factory__ERC20.connect(account1).deploy(
+    const newArtifact = require('../ERC20_new.json')
+    console.log('using the custom artifact we constructed in the root')
+
+    const Factory__ERC20 = new ContractFactory(
+      newArtifact.abi,
+      newArtifact.bytecode,
+      account1
+    )
+    ERC20 = await Factory__ERC20.deploy(
       INITIAL_SUPPLY,
       TOKEN_NAME,
       {

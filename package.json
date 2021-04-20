@@ -16,5 +16,8 @@
     "hardhat": "^2.0.7",
     "hardhat-deploy": "^0.7.0-beta.49",
     "mocha": "^8.2.1"
+  },
+  "dependencies": {
+    "@eth-optimism/hardhat-ovm": "^0.0.2"
   }
 }
